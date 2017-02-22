@@ -1,2 +1,14 @@
-<h1>About Bloccit</h1>
-<p>Created by: Ludwig Gerdes</p>
+<div class="container">
+  <div class="row">
+  <div class="col-xs-8">
+    <h1>About Bloccit</h1>
+    <p>Created by: Ludwig Gerdes</p>
+  </div>
+  <div class="col-xs-4">
+    <%= link_to("https://github.com/WolfgangLG/bloccit", method: :put, class: 'btn social-btn') do %>
+        <%= content_tag('i', nil, class: 'fa fa-github fa-2x') %>
+        <%= content_tag(:p, "View on GitHub") %>
+    <% end %>
+  </div>
+</div>
+</div>
