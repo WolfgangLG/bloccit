@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  let(:my_post) { Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  let!(:my_post) { Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -9,16 +9,17 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    # it "assigns [my_post] to @posts" do
-    #   get :index
-    #   expect(assigns(:posts)).to eq([my_post])
-    # end
+    it "assigns [my_post] to @posts" do
+      get :index
+      expect(assigns(:posts)).to eq([my_post])
+    end
 
     # # BRING UP TO SHANNON =>  Couldn't get this spec to work – All specs
-    # it "overrides [my_post] title with SPAM" do
-    #   get :index
-    #   expect([my_post.title]).to eq(["SPAM"])
-    # end
+    it "overrides [my_post] title with SPAM" do
+      get :index
+      post = assigns(:posts).first
+      expect([post.title]).to eq(["SPAM"])
+    end
   end
 
   # describe "GET #show" do
