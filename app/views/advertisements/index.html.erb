@@ -1,10 +1,10 @@
 <div class="container">
   <h1>All Advertisements</h1>
-  <% @posts.each do |post| %>
+  <% @advertisements.each do |advertisement| %>
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
-         <%= link_to "#{post.id}. #{post.title}", post %>
+          <%= link_to "#{advertisement.id}. #{advertisement.title}", advertisement %>
         </h4>
       </div>
     </div>
