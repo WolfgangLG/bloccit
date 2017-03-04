@@ -1,12 +1,23 @@
 <div class="container">
-  <h1>All Posts</h1>
-  <% @posts.each do |post| %>
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading">
-         <%= link_to "#{post.id}. #{post.title}", post %>
-        </h4>
-      </div>
+  <div class="row">
+    <div class="col-md-4 col-xs-6">
+      <h1>All Posts</h1>
     </div>
-  <% end %>
+    <div class="col-md-8 col-xs-6">
+      <h1><%= link_to "New Post", new_post_path, class: 'btn btn-success'%></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% @posts.each do |post| %>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading">
+             <%= link_to "#{post.id}. #{post.title}", post %>
+            </h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
