@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= @question.title %></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-4">
+      <div><%= link_to 'Edit Question', edit_question_path(@question), class: 'btn btn-warning'%></div>
+    </div>
+    <div class="col-md-1 col-sm-2 col-xs-4">
+      <div><%= link_to 'Delete Question', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>Resolved: <%= @question.resolved %></p>
+    </div>
+    <div class="col-md-12">
+      <p><%= @question.body %></p>
+    </div>
+    <div class="col-xs-12">
+      <h1><%= link_to 'Back', questions_path, class: 'btn btn-info' %></h1>
+    </div>
+  </div>
+
+</div>
