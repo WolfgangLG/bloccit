@@ -8,12 +8,6 @@ RSpec.describe TopicsController, type: :controller do
     public: false
   } }
 
-  # let(:invalid_attributes) {
-  #   skip("Add a hash of attributes invalid for your model")
-  # }
-  #
-  # let(:valid_session) { {} }
-
   let!(:my_topic) { Topic.create!(valid_attributes) }
 
      describe "GET index" do
@@ -31,7 +25,7 @@ RSpec.describe TopicsController, type: :controller do
          it "marks the topic as private" do
            get :index
            topic = assigns(:topics).first
-           expect([topic.name]).to eq([topic.name])
+           expect([topic.name]).to eq([my_topic.name += " (Private Topic)"])
          end
        end
      end

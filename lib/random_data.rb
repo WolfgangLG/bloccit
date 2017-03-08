@@ -27,4 +27,9 @@
      letters.shuffle!
      letters[0,rand(3..8)].join
    end
+
+   def self.random_price
+     price = rand(1_000)
+   end
+
  end

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sponsored Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Price</th>
+      <th>Topic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sponsored_posts.each do |sponsored_post| %>
+      <tr>
+        <td><%= sponsored_post.title %></td>
+        <td><%= sponsored_post.body %></td>
+        <td><%= sponsored_post.price %></td>
+        <td><%= sponsored_post.topic %></td>
+        <td><%= link_to 'Show', sponsored_post %></td>
+        <td><%= link_to 'Edit', edit_sponsored_post_path(sponsored_post) %></td>
+        <td><%= link_to 'Destroy', sponsored_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sponsored post', new_sponsored_post_path %>
