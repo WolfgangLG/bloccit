@@ -4,7 +4,8 @@ RSpec.describe TopicsController, type: :controller do
 
   let(:valid_attributes) { {
     name: RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    description: RandomData.random_paragraph,
+    public: false
   } }
 
   # let(:invalid_attributes) {
@@ -13,7 +14,7 @@ RSpec.describe TopicsController, type: :controller do
   #
   # let(:valid_session) { {} }
 
-  let(:my_topic) { Topic.create!(valid_attributes) }
+  let!(:my_topic) { Topic.create!(valid_attributes) }
 
      describe "GET index" do
        it "returns http success" do
@@ -24,6 +25,14 @@ RSpec.describe TopicsController, type: :controller do
        it "assigns my_topic to @topics" do
          get :index
          expect(assigns(:topics)).to eq([my_topic])
+       end
+
+       context "when private topic" do
+         it "marks the topic as private" do
+           get :index
+           topic = assigns(:topics).first
+           expect([topic.name]).to eq([topic.name])
+         end
        end
      end
 

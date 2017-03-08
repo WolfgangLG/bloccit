@@ -3,11 +3,7 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.all
-    @topics.each do |topic|
-      if topic.public == false
-        topic.name += " (Private Topic)"
-      end
-    end
+    @topics.map { |topic| if topic.public == false; topic.name += " (Private Topic)" end }
   end
 
   def show
