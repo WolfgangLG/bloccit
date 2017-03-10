@@ -32,3 +32,5 @@ source 'https://rubygems.org'
  gem 'turbolinks'
  gem 'bootstrap-sass'
  gem 'rb-readline', '~> 0.5.4'
+
+ gem 'bcrypt'
