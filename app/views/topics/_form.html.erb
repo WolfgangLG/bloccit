@@ -1,29 +1,30 @@
-<%= form_for(@topic) do |f| %>
-  <% if @topic.errors.any? %>
+<%= form_for(topic) do |f| %>
+  <% if topic.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
-
+      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
       <ul>
-      <% @topic.errors.full_messages.each do |message| %>
+      <% topic.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br>
-    <%= f.check_box :public %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= form_group_tag(topic.errors[:name]) do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter topic name" %>
+  <% end %>
+
+  <%= form_group_tag(topic.errors[:description]) do %>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter topic description" %>
+  <% end %>
+
+  <%= form_group_tag(topic.errors[:public]) do %>
+    <%= f.label :public, class: 'checkbox' do %>
+      <%= f.check_box :public %> Public topic
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Save", class: 'btn btn-success' %>
 <% end %>
