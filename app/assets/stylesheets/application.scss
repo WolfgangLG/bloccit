@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "welcome.scss";
+
+.user-info {
+  margin-top: 9px;
+}
+
+.nav {
+  margin-top: 5px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
