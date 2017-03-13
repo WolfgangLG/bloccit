@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
   end
 
   def new
@@ -15,7 +14,6 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(params[:id])
   end
 
   def create
@@ -53,7 +51,6 @@ class TopicsController < ApplicationController
       @topic = Topic.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def topic_params
       params.require(:topic).permit(:name, :public, :description)
     end
