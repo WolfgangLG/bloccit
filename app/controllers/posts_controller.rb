@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :require_sign_in, except: :show
   before_action :set_topic, only: [:new, :create]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -10,8 +11,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.topic = @topic
+
+    @post = @topic.posts.new(post_params)
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Post was saved successfully"
