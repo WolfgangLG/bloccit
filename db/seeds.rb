@@ -1,8 +1,8 @@
 require 'random_data'
 
+# Create Users
   5.times do
     User.create!(
-    # #3
     name:     RandomData.random_name,
     email:    RandomData.random_email,
     password: RandomData.random_sentence
@@ -10,6 +10,7 @@ require 'random_data'
   end
   users = User.all
 
+# Create Topics
   15.times do
     Topic.create!(
      name:         RandomData.random_sentence,
@@ -32,8 +33,9 @@ require 'random_data'
   # Create Comments
   100.times do
     Comment.create!(
-     post: posts.sample,
-     body: RandomData.random_paragraph
+     user:    users.sample,
+     post:    posts.sample,
+     body:    RandomData.random_paragraph
     )
   end
 
