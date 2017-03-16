@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :require_sign_in, except: :show
-  before_action :authorize_user, except: [:show, :new, :create]
+  before_action :authorize_user, only: :destroy
+  before_action :authorize_mod, only: [:update, :edit]
   before_action :set_topic, only: [:new, :create]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -12,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   def create
-
     @post = @topic.posts.new(post_params)
     @post.user = current_user
 
@@ -62,10 +62,18 @@ class PostsController < ApplicationController
     end
 
     def authorize_user
-     post = Post.find(params[:id])
-     unless current_user == post.user || current_user.admin?
-       flash[:alert] = "You must be an admin to do that."
+      post = Post.find(params[:id])
+      unless current_user == post.user || current_user.admin?
+       flash[:alert] = "You do not have the permissions to perform that action."
        redirect_to [post.topic, post]
-     end
-   end
+      end
+    end
+
+    def authorize_mod
+      post = Post.find(params[:id])
+      unless current_user == post.user || current_user.moderator? || current_user.admin?
+        flash[:alert] = "You do not have the permissions to perform that action."
+        redirect_to [post.topic, post]
+      end
+    end
 end

@@ -39,10 +39,10 @@ require 'random_data'
 
   user = User.first
   user.update_attributes!(
-    name: 'Ludwig Gerdes',
-    email: 'l.w.gerdes@gmail.com', # replace this with your personal email
+    name:     'Ludwig Gerdes',
+    email:    'l.w.gerdes@gmail.com', # replace this with your personal email
     password: 'Laura11221992',
-    role: 'admin'
+    role:     'admin'
   )
 
   # Create an admin user
@@ -59,6 +59,13 @@ require 'random_data'
     email:    'member@example.com',
     password: 'helloworld'
   )
+
+  moderator = User.create!(
+   name:     'Moderator User',
+   email:    'moderator@example.com'
+   password: 'helloworld',
+   role:     'moderator'
+ )
 
   puts "Seed finished"
   puts "#{User.count} users created"
