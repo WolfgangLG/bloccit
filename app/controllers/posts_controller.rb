@@ -12,11 +12,11 @@ class PostsController < ApplicationController
   end
 
   def create
-
     @post = @topic.posts.new(post_params)
     @post.user = current_user
 
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was saved successfully"
       redirect_to [@topic, @post]
     else
@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was updated successfully."
       redirect_to [@post.topic, @post]
     else
