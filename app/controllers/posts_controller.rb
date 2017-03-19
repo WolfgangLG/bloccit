@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def show
+    # @comment = Comment.find(params[:commentable][:id])
   end
 
   def new

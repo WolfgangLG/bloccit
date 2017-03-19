@@ -31,11 +31,19 @@ require 'random_data'
   posts = Post.all
 
   # Create Comments
-  100.times do
+  50.times do
     Comment.create!(
-     user:    users.sample,
-     post:    posts.sample,
-     body:    RandomData.random_paragraph
+     user:        users.sample,
+     commentable: topics.sample,
+     body:        RandomData.random_paragraph
+    )
+  end
+
+  50.times do
+    Comment.create!(
+     user:        users.sample,
+     commentable: posts.sample,
+     body:        RandomData.random_paragraph
     )
   end
 
