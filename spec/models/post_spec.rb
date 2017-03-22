@@ -10,6 +10,7 @@ RSpec.describe Post, type: :model do
 
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:vote) { Vote.create!(value: 1, user: user, post: post) }
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
@@ -29,6 +30,10 @@ RSpec.describe Post, type: :model do
   describe "attributes" do
     it "has title, body, and user attributes" do
       expect(post).to have_attributes(title: title, body: body, user: user)
+    end
+
+    it "has an upvote" do
+      expect(post.votes.count).to eq(1)
     end
   end
 
