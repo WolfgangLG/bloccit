@@ -34,3 +34,4 @@ source 'https://rubygems.org'
  gem 'rb-readline', '~> 0.5.4'
 
  gem 'bcrypt'
+ gem 'figaro', '1.0'
