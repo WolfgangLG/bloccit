@@ -1,0 +1,8 @@
+You've submitted a new post: "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+<%= @post.body %>
+
+You will receive email notifications when other users comment on your post.
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>

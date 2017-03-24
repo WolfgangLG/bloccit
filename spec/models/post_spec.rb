@@ -10,6 +10,7 @@ RSpec.describe Post, type: :model do
 
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:favorite) { Favorite.create!(user: user, post: post)}
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
@@ -76,6 +77,13 @@ RSpec.describe Post, type: :model do
          post.votes.create!(value: -1)
          expect(post.rank).to eq (old_rank - 1)
        end
+     end
+   end
+
+   describe "#fave_post" do
+     it "creates a new favorite post" do
+      @new_post = topic.posts.create!(title: title, body: body, user: user)
+      expect(@new_post.favorites.count).to eq(post.favorites.count)
      end
    end
 end
