@@ -2,13 +2,18 @@
 @import "bootstrap";
 @import "welcome.scss";
 @import "votes.scss";
+@import "users.scss";
 
 .user-info {
-  margin-top: 9px;
+  margin-top: 0;
 }
 
 .nav {
   margin-top: 5px;
+}
+
+.container > .jumbotron {
+  border-radius: 0px;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
