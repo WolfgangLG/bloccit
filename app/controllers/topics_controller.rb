@@ -4,11 +4,15 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.all
-    @topics.map { |topic| if topic.public == false; topic.name += " (Private Topic)" end }
+    @topics = Topic.visible_to(current_user)
+    # @topics.map { |topic| if topic.public == false; topic.name += " (Private Topic)" end }
   end
 
   def show
+    unless @topic.public || current_user
+      flash[:alert] = "You must be signed in to view private topics."
+      redirect_to new_session_path
+    end
   end
 
   def new
