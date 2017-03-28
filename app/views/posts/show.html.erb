@@ -1,12 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Posts#show</h1>
-      <p>Find me in app/views/posts/show.html.erb</p>
-    </div>
-    <div class="col-md-12">
       <div>
-        <%= render partial: 'votes/voter', locals: { post: @post } %>
+        <div class="votings">
+          <%= render partial: 'votes/voter', locals: { post: @post } %>
+        </div>
         <h1>
         <%= @post.title %> <br>
         <small>
