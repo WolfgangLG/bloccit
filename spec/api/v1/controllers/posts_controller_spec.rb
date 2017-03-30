@@ -47,7 +47,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     before do
       my_user.admin!
       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
-      @new_post = build(:post, title: "New Post Title", body: "New Post Body Example Here")
+      @new_post = build(:post, topic: my_topic, user: my_user, title: "New Post Title", body: "New Post Body Example Here")
     end
 
     describe "PUT update" do
@@ -68,21 +68,23 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     end
 
     describe "POST create" do
-      before { post :create, topic_id: my_topic.id, id: my_post.id, post: {title: @new_post.title, body: @new_post.body} }
+      before do
+        post :create, topic_id: my_topic.id, post: {title: @new_post.title, body: @new_post.body}
+      end
 
-      # it "returns http success" do
-      #   expect(response).to have_http_status(:success)
-      # end
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
 
       it "returns json content type" do
         expect(response.content_type).to eq 'application/json'
       end
 
-      # it "creates a post with the correct attributes" do
-      #   hashed_json = JSON.parse(response.body)
-      #   expect(hashed_json["title"]).to eq(@new_post.title)
-      #   expect(hashed_json["body"]).to eq(@new_post.body)
-      # end
+      it "creates a post with the correct attributes" do
+        hashed_json = JSON.parse(response.body)
+        expect(hashed_json["title"]).to eq(@new_post.title)
+        expect(hashed_json["body"]).to eq(@new_post.body)
+      end
     end
 
     describe "DELETE destroy" do
